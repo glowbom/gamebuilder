@@ -1,1 +1,3 @@
-# gamebuilder
+# Glowbom Game Builder
+
+in development

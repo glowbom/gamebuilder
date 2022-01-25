@@ -1,0 +1,1 @@
+{"androidBanner":"Banner Id","androidInterstitial":"Video Ad Id","androidAppId":"App Id","iOSBanner":"Banner Id","iOSInterstitial":"Video Ad Id","iOSAppId":"App Id","showAdsIn":6}

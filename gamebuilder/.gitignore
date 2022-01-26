@@ -5,7 +5,9 @@
 /[Bb]uilds/
 /Library/
 /Assets/AssetStoreTools*
+/Assets/MoralisWeb3ApiSdk*
 Libs
+Logs/*
 
 # Visual Studio 2015 cache directory
 /.vs/

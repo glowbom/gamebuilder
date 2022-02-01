@@ -14,7 +14,7 @@ Here's [a quick demo](https://www.youtube.com/watch?v=mBey-ND_D0A).
 
 ### Dependencies
 
-Don't forget to add [ethereum-unity-boilerplate](https://github.com/ethereum-boilerplate/ethereum-unity-boilerplate) to the Unity project.
+Don't forget to add [**ethereum-unity-boilerplate**](https://github.com/ethereum-boilerplate/ethereum-unity-boilerplate) to the Unity project.
 
 ## Stay tuned
 

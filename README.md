@@ -1,6 +1,10 @@
-# Glowbom Web3 Game Builder
+# Glowbom Game Builder
 
-Glowbom Web3 Game builder lets you build an NFT quest game using Moralis SDK.
+In development.
+
+## NFT Games
+
+Glowbom Game Builder lets you build an NFT quest game using Moralis SDK.
 
 It easily connects to the ETH wallet and lets you build interactive stories and quizzes.
 

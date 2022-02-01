@@ -45,6 +45,7 @@ public class Logic
     public string answers = "";
     public string backgroundPicture;
     public string link;
+    public string nft;
 
     public int getAnswersCount()
     {
@@ -250,6 +251,7 @@ public class Buttons
         public string name;
         public string image;
         public string link;
+        public string nft;
         public int score;
         public int totalQuestionsCount;
     }

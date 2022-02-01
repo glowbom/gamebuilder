@@ -357,7 +357,8 @@ public class QuestEditor : EditorWindow
                 questLoader.buttonsLogic.buttons[i].name = EditorGUILayout.TextField("Name", questLoader.buttonsLogic.buttons[i].name);
                 questLoader.buttonsLogic.buttons[i].image = EditorGUILayout.TextField("Image", questLoader.buttonsLogic.buttons[i].image);
                 questLoader.buttonsLogic.buttons[i].link = EditorGUILayout.TextField("Link", questLoader.buttonsLogic.buttons[i].link);
-                
+                questLoader.buttonsLogic.buttons[i].nft = EditorGUILayout.TextField("NFT", questLoader.buttonsLogic.buttons[i].nft);
+
                 GUILayout.BeginHorizontal();
 
                 if (GUILayout.Button("Insert"))
@@ -641,6 +642,7 @@ public class QuestEditor : EditorWindow
         QuestLoader.language = EditorGUILayout.TextField("Language", QuestLoader.language);
         questLoader.logic.backgroundPicture = EditorGUILayout.TextField("Background Picture", questLoader.logic.backgroundPicture);
         questLoader.logic.link = EditorGUILayout.TextField("Link", questLoader.logic.link);
+        questLoader.logic.nft = EditorGUILayout.TextField("NFT", questLoader.logic.nft);
 
         EditorGUILayout.Space();
 

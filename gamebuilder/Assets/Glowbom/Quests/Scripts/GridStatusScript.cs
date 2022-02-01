@@ -338,6 +338,8 @@ public class GridStatusScript : MonoBehaviour
     public int correctAnswers = 0;
     public int totalQuestionsCount = 0;
 
+    Moralis.MoralisClient moralis = null;
+
     public void procced()
     {
         if (logic != null)
@@ -643,6 +645,8 @@ public class GridStatusScript : MonoBehaviour
             gridButtonsPanel.gameObject.SetActive(true);
             gridBackground.gameObject.SetActive(true);
         }
+
+        moralis = new Moralis.MoralisClient(new Moralis.Platform.ServerConnectionData() { ApplicationID = "tExaeI71lL2dacD127nXbAYUWXbz7TWfzZqp82yy", ServerURI = "https://r93uxdhi97sw.usemoralis.com:2053/server" }, new Moralis.Web3Api.Client.Web3ApiClient());
     }
 
     private int buttonPressedCounter = 0;
@@ -660,6 +664,11 @@ public class GridStatusScript : MonoBehaviour
             {
                 lastClickedGridButtonIndex = i;
                 lastClickedLink = buttonsLogic.buttons[i].link;
+
+                if (buttonsLogic.buttons[i].nft != "")
+                {
+                    Application.OpenURL(buttonsLogic.buttons[i].nft);
+                }
 
                 load();
                 procced();

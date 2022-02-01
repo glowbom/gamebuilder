@@ -5,9 +5,6 @@ using System.IO;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 using System;
-using Moralis;
-using Moralis.Platform; 
-using Moralis.Web3Api.Client;
 
 /*
  * Created on Sun Jul 21 2019
@@ -323,9 +320,6 @@ public class GridStatusScript : MonoBehaviour
     public Text status;
 
     Dictionary<string, string> answers = new Dictionary<string, string>();
-
-    // Moralis
-    MoralisClient moralis = new MoralisClient(new ServerConnectionData() { ApplicationID = "", ServerURI = ""}, new Web3ApiClient());
 
     public static void trackEvent(string category, string action)
     {

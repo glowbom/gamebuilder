@@ -19,3 +19,7 @@ Don't forget to add [**ethereum-unity-boilerplate**](https://github.com/ethereum
 ## Stay tuned
 
 The project is in active development, and we're super excited to add more gaming mechanics soon.
+
+## Audio
+
+Stay tuned.

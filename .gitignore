@@ -65,3 +65,5 @@ gamebuilder/Logs/shadercompiler-UnityShaderCompiler3.log
 gamebuilder/Logs/shadercompiler-UnityShaderCompiler0.log
 gamebuilder/Logs/shadercompiler-UnityShaderCompiler1.log
 *.log
+audio/Temp/*
+audio/Library/*

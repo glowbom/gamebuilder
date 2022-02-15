@@ -64,3 +64,4 @@ gamebuilder/Logs/*
 audio/Library/*
 audio/Logs/*
 audio/Temp/*
+gamebuilder/Logs/shadercompiler-UnityShaderCompiler0.log

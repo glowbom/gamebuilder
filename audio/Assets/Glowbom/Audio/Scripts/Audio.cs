@@ -279,7 +279,8 @@ public class Audio : MonoBehaviour
 #if UNITY_ANDROID
         Application.OpenURL("https://play.google.com/store/apps/developer?id=Ilins+House");
 #elif UNITY_IPHONE
-        Application.OpenURL("https://apps.apple.com/us/developer/maria-ilina/id1474683806#see-all/i-phonei-pad-apps");
+        Debug.Log("iPhone!");
+        Application.OpenURL("https://www.google.com");
 #else
         Application.OpenURL("https://play.google.com/store/apps/developer?id=Ilins+House");
 #endif

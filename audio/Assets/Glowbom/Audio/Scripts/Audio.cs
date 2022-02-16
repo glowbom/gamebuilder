@@ -271,7 +271,7 @@ public class Audio : MonoBehaviour
 
     public void openWebLink()
     {
-        Application.OpenURL("https://stihi.ru/avtor/idioma");
+        Application.OpenURL("https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/39722041514231892782231007733458041671678750369411936451569534866959160573953");
     }
 
     public void openOtherApps()

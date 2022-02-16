@@ -1735,7 +1735,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 48eea5310b2e4484389c6ee1e7a5b4c2, type: 3}
-    m_FontSize: 110
+    m_FontSize: 58
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -1746,7 +1746,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: JamTime
+  m_Text: 'JamTime
+
+    This what Peter says'
 --- !u!222 &366015714
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1938,23 +1940,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0414\u043E\u0440\u043E\u0433\u0438\u0435 \u0440\u0435\u0431\u044F\u0442\u0430
-    \u0438 \u0443\u0432\u0430\u0436\u0430\u0435\u043C\u044B\u0435 \u0432\u0437\u0440\u043E\u0441\u043B\u044B\u0435!
-    \n\n\u0415\u0441\u043B\u0438 \u0432\u044B \u043B\u044E\u0431\u0438\u0442\u0435
-    \u0432\u0435\u0441\u0451\u043B\u044B\u0435 \u0441\u0442\u0438\u0445\u0438 \u0438
-    \u0441\u043A\u0430\u0437\u043A\u0438, \u0442\u043E \u044D\u0442\u043E \u043F\u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u0435
-    \u0434\u043B\u044F \u0432\u0430\u0441. \u0417\u0434\u0435\u0441\u044C \u0432\u044B
-    \u043F\u043E\u0432\u0441\u0442\u0440\u0435\u0447\u0430\u0435\u0442\u0435\u0441\u044C
-    \u0441\u043E \u0441\u043A\u0430\u0437\u043E\u0447\u043D\u044B\u043C\u0438 \u0433\u0435\u0440\u043E\u044F\u043C\u0438,
-    \u0441\u043E\u0437\u0434\u0430\u043D\u043D\u044B\u043C\u0438 \u0434\u0435\u0442\u0441\u043A\u0438\u043C
-    \u043F\u043E\u044D\u0442\u043E\u043C \u0413\u0430\u043B\u0438\u043D\u043E\u0439
-    \u0418\u043B\u044C\u0438\u043D\u043E\u0439. \u0412\u0430\u0441 \u0436\u0434\u0443\u0442
-    \u0438\u043D\u0442\u0435\u0440\u0435\u0441\u043D\u044B\u0435 \u0438\u0441\u0442\u043E\u0440\u0438\u0438
-    \u0438 \u0437\u0430\u0431\u0430\u0432\u043D\u044B\u0435 \u043F\u0440\u0438\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u044F.
-    \n\n\u0421\u0430\u0434\u0438\u0442\u0435\u0441\u044C \u043F\u043E\u0443\u0434\u043E\u0431\u043D\u0435\u0435,
-    \u0434\u0440\u0443\u0437\u044C\u044F. \u0417\u0430\u043D\u0430\u0432\u0435\u0441
-    \u043E\u0442\u043A\u0440\u044B\u0432\u0430\u0435\u0442\u0441\u044F. \u041D\u0430\u0447\u0438\u043D\u0430\u0435\u0442\u0441\u044F
-    \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u0438\u0435!"
+  m_Text: This is f*cking awesome
 --- !u!222 &382130271
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2268,7 +2254,7 @@ GameObject:
   - component: {fileID: 473645007}
   - component: {fileID: 473645006}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: ButtonNFTs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2841,7 +2827,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041D\u0430\u0437\u0430\u0434"
+  m_Text: Back
 --- !u!222 &550191134
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3283,7 +3269,7 @@ GameObject:
   - component: {fileID: 1095498825}
   - component: {fileID: 1095498824}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ButtonStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4590,7 +4576,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Menu
+  m_Text: Start
 --- !u!222 &1304735768
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4656,7 +4642,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dc76b6a76b99e4dc4a6de7de5f9c580d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eefc05383a371481aa630840f079e844, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5667,7 +5653,7 @@ GameObject:
   - component: {fileID: 1713993481}
   - component: {fileID: 1713993480}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: ButtonBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7103,7 +7089,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NFTs
+  m_Text: NFTz
 --- !u!222 &2069184818
 CanvasRenderer:
   m_ObjectHideFlags: 0

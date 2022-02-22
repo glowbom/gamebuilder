@@ -65,3 +65,6 @@ audio/Library/*
 audio/Logs/*
 audio/Temp/*
 gamebuilder/Logs/shadercompiler-UnityShaderCompiler0.log
+gamebuilder/Logs/shadercompiler-UnityShaderCompiler0.log
+audio/obj/Debug/Assembly-CSharp-Editor.csproj.AssemblyReference.cache
+*.cache

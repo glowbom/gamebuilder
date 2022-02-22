@@ -11,12 +11,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /*
- * Created on Wed Apr 1 2020
+ * Created on Wed Feb 22 2022
  *
- * Copyright (c) 2020 Glowbom, Inc.
+ * Copyright (c) 2022 Glowbom, Inc.
  */
 public class Audio : MonoBehaviour
 {
+    public AudioSource mistakeAudioSource;
+
     public AudioSource audioSource;
     public AudioDataLoader audioDataLoader;
     public Dictionary<string, Sprite> sprites;

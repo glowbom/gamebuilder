@@ -1748,7 +1748,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'JamTime
 
-    This what Peter says'
+    This what Ethan says'
 --- !u!222 &366015714
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2546,6 +2546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0303914d4734b989b145c151767ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mistakeAudioSource: {fileID: 0}
   audioSource: {fileID: 74419609}
   image: {fileID: 2079004364}
   background: {fileID: 359995556}

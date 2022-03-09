@@ -12,7 +12,7 @@ public class AudioEngine : MonoBehaviour
     {
         // StartCoroutine(PlayAudioSource(3f)); 
 
-        Invoke("PlayBass", 3f); 
+        // Invoke("PlayBass", 3f); 
     }
 
     IEnumerator PlayAudioSource(float t) 
@@ -24,6 +24,11 @@ public class AudioEngine : MonoBehaviour
     void PlayBass() 
     {
     	audioSource.Play(); 
+    }
+
+    public void PlayBassFromButtonClick() 
+    {
+    	PlayBass(); 
     }
 
     // Update is called once per frame

@@ -86,6 +86,8 @@ public class Audio : MonoBehaviour
 
         monetization.initAds();
 
+        //mistakeAudioSource.Play();
+
     }
 
     public void gridButtonClicked(string key)

@@ -10,7 +10,20 @@ public class AudioEngine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource.Play();
+        // StartCoroutine(PlayAudioSource(3f)); 
+
+        Invoke("PlayBass", 3f); 
+    }
+
+    IEnumerator PlayAudioSource(float t) 
+    {
+    	yield return new WaitForSeconds(t);
+    	audioSource.Play();
+    }
+
+    void PlayBass() 
+    {
+    	audioSource.Play(); 
     }
 
     // Update is called once per frame
@@ -19,3 +32,8 @@ public class AudioEngine : MonoBehaviour
         
     }
 }
+
+
+// Links of reference
+
+// https://weeklyhow.com/unity-delay-function/

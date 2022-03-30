@@ -851,7 +851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &127503902
 RectTransform:
   m_ObjectHideFlags: 0
@@ -925,7 +925,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: monkey
+          m_StringArgument: error1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &127503904
@@ -948,7 +948,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 966169937ee224e61a6ef7bf2773fec2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32c0248aa0d8843d8847277d9efb005c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1194,7 +1194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041A\u043E\u0442 \u0438 \u0414\u0436\u0438\u043D\u043D"
+  m_Text: Error 3
 --- !u!222 &171334629
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3460,8 +3460,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041A\u0430\u043A \u0441\u0435\u043B\u0444\u0438 \u0447\u0443\u0442\u044C
-    \u043D\u0435 \u043F\u043E\u0433\u0443\u0431\u0438\u043B\u043E \u041E\u0431\u0435\u0437\u044C\u044F\u043D\u0443"
+  m_Text: Error 1
 --- !u!222 &1098384265
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3912,7 +3911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1215013528
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3986,7 +3985,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: cat
+          m_StringArgument: error3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1215013530
@@ -4009,7 +4008,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5a8856ede1c174622928669d1d63777b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32c0248aa0d8843d8847277d9efb005c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6632,7 +6631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1950729487
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6706,7 +6705,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: elephant
+          m_StringArgument: error2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1950729489
@@ -6729,7 +6728,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ae9ae3a0f41974262bf1a3b3e2beccd1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc6b6f966b67c4c0b8dfc687bb059705, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6817,7 +6816,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041A\u0430\u043A \u0421\u043B\u043E\u043D \u0441\u0442\u0430\u043B \u043F\u0440\u043E\u0444\u0435\u0441\u0441\u043E\u0440\u043E\u043C"
+  m_Text: Error 2
 --- !u!222 &1953318077
 CanvasRenderer:
   m_ObjectHideFlags: 0

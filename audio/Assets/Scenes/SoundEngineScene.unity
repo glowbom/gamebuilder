@@ -1744,6 +1744,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1a58b8dc46b499cb91ec419a8b7c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  track: {fileID: 638645260}
+  bass: {fileID: 1463782990}
+  error1: {fileID: 595708690}
+  error2: {fileID: 2019477680}
 --- !u!1 &2086190723
 GameObject:
   m_ObjectHideFlags: 0

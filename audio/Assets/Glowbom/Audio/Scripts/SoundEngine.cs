@@ -16,6 +16,10 @@ public class SoundEngine : MonoBehaviour
         
     }
 
+    public void playBass() {
+
+    }
+
     public void playTrack() {
 
     }
@@ -25,6 +29,6 @@ public class SoundEngine : MonoBehaviour
     }
 
     public void playError2() {
-        
+
     }
 }

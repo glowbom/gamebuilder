@@ -23,17 +23,30 @@ public class SoundEngine : MonoBehaviour
 
     public void playBass() {
         bass.Play();
+        track.Stop();
     }
 
     public void playTrack() {
         track.Play();
+        bass.Stop();
     }
 
     public void playError() {
         error1.Play();
+        track.volume = 0.05f;
+        bass.volume = 0.05f;
+        Invoke("resumeVolume", 1f);
     }
 
     public void playError2() {
         error2.Play();
+        track.volume = 0.05f;
+        bass.volume = 0.05f;
+        Invoke("resumeVolume", 1f);
     }
+
+    public void resumeVolume() {
+        track.volume = 1f;
+        bass.volume = 1f;
+    } 
 }

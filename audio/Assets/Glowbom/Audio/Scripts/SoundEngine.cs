@@ -9,18 +9,6 @@ public class SoundEngine : MonoBehaviour
     public AudioSource error1;
     public AudioSource error2;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void playBass() {
         bass.Play();
         track.Stop();

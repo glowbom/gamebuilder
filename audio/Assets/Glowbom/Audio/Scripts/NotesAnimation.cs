@@ -30,6 +30,10 @@ public class NotesAnimation : MonoBehaviour
 	// https://forum.unity.com/threads/move-gameobject-along-a-given-path.455195/
 
 
+	//MARK: Detecting touches
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,8 +49,8 @@ public class NotesAnimation : MonoBehaviour
 
        // note.gameObject.transform.Translate(0, 0, 0.02f); 
 
-    	note.gameObject.transform.position = Vector3.MoveTowards(note.gameObject.transform.position, endPointNode.gameObject.transform.position, 0.05f); 
-    	noteTwo.gameObject.transform.position = Vector3.MoveTowards(noteTwo.gameObject.transform.position, endPointNodeTwo.gameObject.transform.position, 0.05f); 
-    	noteThree.gameObject.transform.position = Vector3.MoveTowards(noteThree.gameObject.transform.position, endPointNodeThree.gameObject.transform.position, 0.05f); 
+    	note.gameObject.transform.position = Vector3.MoveTowards(note.gameObject.transform.position, endPointNode.gameObject.transform.position, 0.03f); 
+    	noteTwo.gameObject.transform.position = Vector3.MoveTowards(noteTwo.gameObject.transform.position, endPointNodeTwo.gameObject.transform.position, 0.03f); 
+    	noteThree.gameObject.transform.position = Vector3.MoveTowards(noteThree.gameObject.transform.position, endPointNodeThree.gameObject.transform.position, 0.03f); 
     }
 }

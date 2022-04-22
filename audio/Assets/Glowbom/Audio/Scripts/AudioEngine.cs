@@ -34,8 +34,3 @@ public class AudioEngine : MonoBehaviour
         
     }
 }
-
-
-// Links of reference
-
-// https://weeklyhow.com/unity-delay-function/

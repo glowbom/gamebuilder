@@ -285,7 +285,7 @@ public class GridStatusScript : MonoBehaviour
     // incorrect answer color #B24437
 
     public Sharing sharing;
-    public Monetization monetization;
+    //public Monetization monetization;
     public InputField clipboard;
 
     public GameObject editButtonPanel;
@@ -338,7 +338,7 @@ public class GridStatusScript : MonoBehaviour
     public int correctAnswers = 0;
     public int totalQuestionsCount = 0;
 
-    Moralis.MoralisClient moralis = null;
+    //Moralis.MoralisClient moralis = null;
 
     public void procced()
     {
@@ -349,10 +349,10 @@ public class GridStatusScript : MonoBehaviour
             if (logic.currentItemIndex > -1 && logic.currentItemIndex < logic.items.Length)
             {
 
-                if (monetization != null)
-                {
-                    monetization.tryShowAds();
-                }
+                //if (monetization != null)
+                //{
+                //    monetization.tryShowAds();
+                //}
 
                 resetDraggablePanelPosition(scrollView.gameObject.transform);
 
@@ -540,10 +540,10 @@ public class GridStatusScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (monetization != null)
-        {
-            monetization.initAds();
-        }
+        //if (monetization != null)
+        //{
+        //    monetization.initAds();
+        //}
 
         sprites.Clear();
         Sprite sprite = Resources.Load("Textures/default", typeof(Sprite)) as Sprite;
@@ -646,7 +646,7 @@ public class GridStatusScript : MonoBehaviour
             gridBackground.gameObject.SetActive(true);
         }
 
-        moralis = new Moralis.MoralisClient(new Moralis.Platform.ServerConnectionData() { ApplicationID = "tExaeI71lL2dacD127nXbAYUWXbz7TWfzZqp82yy", ServerURI = "https://r93uxdhi97sw.usemoralis.com:2053/server" }, new Moralis.Web3Api.Client.Web3ApiClient());
+        //moralis = new Moralis.MoralisClient(new Moralis.Platform.ServerConnectionData() { ApplicationID = "tExaeI71lL2dacD127nXbAYUWXbz7TWfzZqp82yy", ServerURI = "https://r93uxdhi97sw.usemoralis.com:2053/server" }, new Moralis.Web3Api.Client.Web3ApiClient());
     }
 
     private int buttonPressedCounter = 0;

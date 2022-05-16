@@ -70,3 +70,6 @@ audio/obj/Debug/Assembly-CSharp-Editor.csproj.AssemblyReference.cache
 *.cache
 core/core/Library/*
 core/core/Temp/*
+core/core/Logs/shadercompiler-UnityShaderCompiler0.log
+core/core/mono_crash.9adc8497e.0.json
+core/core/UserSettings/Layouts/CurrentMaximizeLayout.dwlt

@@ -38,7 +38,7 @@ public class Logic
     public string[] heroElements;
     public int[] heroValues;
     public int currentItemIndex = 0;
-    public Item[] items;
+    public Item[] questions;
     public int deadValue;
     public int deadLevel;
     public int deadItemIndex;
@@ -50,15 +50,15 @@ public class Logic
 
     public int getAnswersCount()
     {
-        return items[currentItemIndex].answersCount;
+        return questions[currentItemIndex].answersCount;
     }
 
     public int getTotalQuestionsCount()
     {
         int totalQuestions = 0;
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < questions.Length; i++)
         {
-            if (items[i].answersCount > 0)
+            if (questions[i].answersCount > 0)
             {
                 ++totalQuestions;
             }
@@ -69,7 +69,7 @@ public class Logic
 
     public bool isSupportAnswers()
     {
-        return items[currentItemIndex].answersCount > 0;
+        return questions[currentItemIndex].answersCount > 0;
     }
 
     public bool hasMultipleAnswers()
@@ -77,11 +77,11 @@ public class Logic
         bool hasMultiple = false;
         int answers = 0;
 
-        if (items[currentItemIndex] != null)
+        if (questions[currentItemIndex] != null)
         {
-            for (int i = 0; i < items[currentItemIndex].buttonAnswers.Length; i++)
+            for (int i = 0; i < questions[currentItemIndex].buttonAnswers.Length; i++)
             {
-                if (items[currentItemIndex].buttonAnswers[i] > 0)
+                if (questions[currentItemIndex].buttonAnswers[i] > 0)
                 {
                     ++answers;
                     if (answers > 1)
@@ -98,27 +98,27 @@ public class Logic
 
     public int getButtonAnswer(int i)
     {
-        return items[currentItemIndex].buttonAnswers != null &&
-            items[currentItemIndex].buttonAnswers != null &&
-            i > -1 && i < items[currentItemIndex].buttonAnswers.Length ?
-            items[currentItemIndex].buttonAnswers[i] : 0;
+        return questions[currentItemIndex].buttonAnswers != null &&
+            questions[currentItemIndex].buttonAnswers != null &&
+            i > -1 && i < questions[currentItemIndex].buttonAnswers.Length ?
+            questions[currentItemIndex].buttonAnswers[i] : 0;
     }
 
     public int getAnswerPictureDelay()
     {
-        return items[currentItemIndex].answerPictureDelay;
+        return questions[currentItemIndex].answerPictureDelay;
     }
 
     public string getAnswerPicture()
     {
-        return items[currentItemIndex].answerPicture;
+        return questions[currentItemIndex].answerPicture;
     }
 
     public bool isSharingButton(int i)
     {
-        if (currentItemIndex < items.Length)
+        if (currentItemIndex < questions.Length)
         {
-            Item item = items[currentItemIndex];
+            Item item = questions[currentItemIndex];
 
             if (item.goIndexes != null && i > -1 && i < item.goIndexes.Length)
             {
@@ -132,7 +132,7 @@ public class Logic
     public bool isAskFriendButton(int i)
     {
 
-        Item item = items[currentItemIndex];
+        Item item = questions[currentItemIndex];
 
         if (item.goIndexes != null && i > -1 && i < item.goIndexes.Length)
         {
@@ -144,7 +144,7 @@ public class Logic
 
     public bool isGoBackButton(int i)
     {
-        Item item = items[currentItemIndex];
+        Item item = questions[currentItemIndex];
 
         if (item.goIndexes != null && i > -1 && i < item.goIndexes.Length)
         {
@@ -156,16 +156,16 @@ public class Logic
 
     public string getTextToShare()
     {
-        return items[currentItemIndex].description;
+        return questions[currentItemIndex].description;
     }
 
     public string getAskFriendTextToShare()
     {
         string a = "";
         int i = 0;
-        foreach (string s in items[currentItemIndex].buttonsTexts)
+        foreach (string s in questions[currentItemIndex].buttonsTexts)
         {
-            if (items[currentItemIndex].goIndexes[i] == 10001 || items[currentItemIndex].goIndexes[i] == 10002)
+            if (questions[currentItemIndex].goIndexes[i] == 10001 || questions[currentItemIndex].goIndexes[i] == 10002)
             {
                 ++i;
                 continue;
@@ -180,13 +180,13 @@ public class Logic
             a = a.Substring(0, a.Length - 2);
         }
 
-        return items[currentItemIndex].description + " Answers: " + a;
+        return questions[currentItemIndex].description + " Answers: " + a;
     }
 
 
     public bool isCorrectAnswer(int i)
     {
-        Item item = items[currentItemIndex];
+        Item item = questions[currentItemIndex];
 
         if (item.buttonAnswers != null && i > -1 && i < item.buttonAnswers.Length)
         {
@@ -198,7 +198,7 @@ public class Logic
 
     public Item nextItem(int i)
     {
-        Item item = items[currentItemIndex];
+        Item item = questions[currentItemIndex];
 
         if (i > -1 && i < item.goIndexes.Length)
         {
@@ -213,9 +213,9 @@ public class Logic
                 answers += (", " + item.buttonsTexts[i]);
             }
 
-            if (currentItemIndex < items.Length)
+            if (currentItemIndex < questions.Length)
             {
-                Item ni = items[currentItemIndex];
+                Item ni = questions[currentItemIndex];
 
                 if (ni.heroValues != null)
                 {
@@ -228,7 +228,7 @@ public class Logic
                 /*if (deadValue > -1 && deadValue < heroValues.Length) {
                     if (heroValues [deadValue] <= deadLevel) {
                         currentItemIndex = deadItemIndex;
-                        nextItem = items [currentItemIndex];
+                        nextItem = questions [currentItemIndex];
                         pleaseRestart = true;
                     }
                 }
@@ -347,7 +347,7 @@ public class Quiz : MonoBehaviour
         {
             answersCollected = 0;
 
-            if (logic.currentItemIndex > -1 && logic.currentItemIndex < logic.items.Length)
+            if (logic.currentItemIndex > -1 && logic.currentItemIndex < logic.questions.Length)
             {
 
                 //if (monetization != null)
@@ -361,7 +361,7 @@ public class Quiz : MonoBehaviour
                 }
                 
 
-                Logic.Item item = logic.items[logic.currentItemIndex];
+                Logic.Item item = logic.questions[logic.currentItemIndex];
                 if (gameViewTitle != null)
                 {
                     gameViewTitle.text = item.title;
@@ -1143,7 +1143,7 @@ public class Quiz : MonoBehaviour
 
         // load pics
         Sprite sprite = null;
-        foreach (var item in logic.items)
+        foreach (var item in logic.questions)
         {
             if (item.answerPicture != null && item.answerPicture != "")
             {
@@ -1465,8 +1465,8 @@ public class Quiz : MonoBehaviour
     {
         gameViewTitle.text = editTitleField.text;
         gameViewText.text = editTextField.text;
-        logic.items[logic.currentItemIndex].title = editTitleField.text;
-        logic.items[logic.currentItemIndex].description = editTextField.text;
+        logic.questions[logic.currentItemIndex].title = editTitleField.text;
+        logic.questions[logic.currentItemIndex].description = editTextField.text;
         editView.SetActive(false);
     }
 

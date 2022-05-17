@@ -44,12 +44,12 @@ public class QuestEditor : EditorWindow
         item.buttonAnswers = new int[1];
         item.buttonAnswers[0] = 0;
 
-        List<Logic.Item> items = new List<Logic.Item>(questLoader.logic.items);
-        items.Insert(i + 1, item);
+        List<Logic.Item> questions = new List<Logic.Item>(questLoader.logic.questions);
+        questions.Insert(i + 1, item);
 
-        questLoader.logic.items = items.ToArray();
+        questLoader.logic.questions = questions.ToArray();
 
-        foreach (var logicItem in questLoader.logic.items) {
+        foreach (var logicItem in questLoader.logic.questions) {
             for(int j = 0; j < logicItem.goIndexes.Length; j++) {
                 if (logicItem.goIndexes[j] >= i + 1) {
                     logicItem.goIndexes[j] = logicItem.goIndexes[j] + 1;
@@ -62,14 +62,14 @@ public class QuestEditor : EditorWindow
     }
 
     private void remove(int i) {
-        List<Logic.Item> items = new List<Logic.Item>(questLoader.logic.items);
-        if (items.Count > 1)
+        List<Logic.Item> questions = new List<Logic.Item>(questLoader.logic.questions);
+        if (questions.Count > 1)
         {
-            items.RemoveAt(i);
+            questions.RemoveAt(i);
 
-            questLoader.logic.items = items.ToArray();
+            questLoader.logic.questions = questions.ToArray();
 
-            foreach (var logicItem in questLoader.logic.items)
+            foreach (var logicItem in questLoader.logic.questions)
             {
                 for (int j = 0; j < logicItem.goIndexes.Length; j++)
                 {
@@ -135,11 +135,11 @@ public class QuestEditor : EditorWindow
         item.buttonAnswers = new int[1];
         item.buttonAnswers[0] = 0;
 
-        List<Logic.Item> items = new List<Logic.Item>(questLoader.logic.items);
-        items.Add(item);
+        List<Logic.Item> questions = new List<Logic.Item>(questLoader.logic.questions);
+        questions.Add(item);
 
-        questLoader.logic.items = items.ToArray();
-        questLoader.logic.currentItemIndex = questLoader.logic.items.Length - 1;
+        questLoader.logic.questions = questions.ToArray();
+        questLoader.logic.currentItemIndex = questLoader.logic.questions.Length - 1;
         GUI.FocusControl(null);
         initAllTabUi();
     }
@@ -157,14 +157,14 @@ public class QuestEditor : EditorWindow
 
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Width(position.width - 20), GUILayout.Height(490));
             int i = 0;
-            foreach (var item in questLoader.logic.items)
+            foreach (var item in questLoader.logic.questions)
             {
                 string buttonTitle = createTitle(item, i);
 
                 GUILayout.BeginHorizontal();
                 if (GUILayout.Button(buttonTitle)) {
                     GUI.FocusControl(null);
-                    questLoader.logic.currentItemIndex = Array.IndexOf(questLoader.logic.items, item);
+                    questLoader.logic.currentItemIndex = Array.IndexOf(questLoader.logic.questions, item);
                     tabElements = 1;
                     OnGUI();
 
@@ -173,7 +173,7 @@ public class QuestEditor : EditorWindow
                         Image mainImage = GameObject.Find("MainImage").GetComponent<Image>();
                         if (mainImage.GetComponent<RectTransform>().hasChanged)
                         {
-                            var nextItem = questLoader.logic.items[questLoader.logic.currentItemIndex];
+                            var nextItem = questLoader.logic.questions[questLoader.logic.currentItemIndex];
                             if (nextItem.mainImagePosition != null && nextItem.mainImagePosition.x != 0)
                             {
                                 mainImage.rectTransform.localPosition = nextItem.mainImagePosition;
@@ -241,7 +241,7 @@ public class QuestEditor : EditorWindow
 
     private void convertToAskFriendButton()
     {
-        var item = questLoader.logic.items[questLoader.logic.currentItemIndex];
+        var item = questLoader.logic.questions[questLoader.logic.currentItemIndex];
         if (item.goIndexes.Length > 0)
         {
             item.goIndexes[item.goIndexes.Length - 1] = 10002;
@@ -255,7 +255,7 @@ public class QuestEditor : EditorWindow
 
     private void convertToShareButton()
     {
-        var item = questLoader.logic.items[questLoader.logic.currentItemIndex];
+        var item = questLoader.logic.questions[questLoader.logic.currentItemIndex];
         if (item.goIndexes.Length > 0)
         {
             item.goIndexes[item.goIndexes.Length - 1] = 10001;
@@ -269,7 +269,7 @@ public class QuestEditor : EditorWindow
 
     private void convertToBackButton()
     {
-        var item = questLoader.logic.items[questLoader.logic.currentItemIndex];
+        var item = questLoader.logic.questions[questLoader.logic.currentItemIndex];
         if (item.goIndexes.Length > 0)
         {
             item.goIndexes[item.goIndexes.Length - 1] = 10003;
@@ -282,7 +282,7 @@ public class QuestEditor : EditorWindow
     }
 
     private void insertButton(int i) {
-        var item = questLoader.logic.items[questLoader.logic.currentItemIndex];
+        var item = questLoader.logic.questions[questLoader.logic.currentItemIndex];
         List<string> buttonsTextsList = new List<string>(item.buttonsTexts);
         List<int> goIndexesList = new List<int>(item.goIndexes);
         List<int> goConditionsList = item.goConditions == null ? new List<int>() : new List<int>(item.goConditions);
@@ -292,7 +292,7 @@ public class QuestEditor : EditorWindow
             goConditionsList.Insert(i + 1, 0);
         }
 
-        goIndexesList.Insert(i + 1, questLoader.logic.items.Length);
+        goIndexesList.Insert(i + 1, questLoader.logic.questions.Length);
         buttonAnswersList.Insert(i + 1, 0);
         buttonsTextsList.Insert(i + 1, "Go Button");
 
@@ -309,7 +309,7 @@ public class QuestEditor : EditorWindow
     }
 
     private void removeButton(int i) {
-        var item = questLoader.logic.items[questLoader.logic.currentItemIndex];
+        var item = questLoader.logic.questions[questLoader.logic.currentItemIndex];
         List<string> buttonsTextsList = new List<string>(item.buttonsTexts);
         List<int> goIndexesList = new List<int>(item.goIndexes);
         List<int> goConditionsList = item.goConditions != null ? new List<int>(item.goConditions) : new List<int>();
@@ -400,7 +400,7 @@ public class QuestEditor : EditorWindow
         EditorGUILayout.Space();
 
         if (questLoader.logic != null) {
-            var item = questLoader.logic.items[questLoader.logic.currentItemIndex];
+            var item = questLoader.logic.questions[questLoader.logic.currentItemIndex];
             GUILayout.Label("Screen " + questLoader.logic.currentItemIndex, EditorStyles.label);
 
             item.title = EditorGUILayout.TextField("Title", item.title);
@@ -460,7 +460,7 @@ public class QuestEditor : EditorWindow
 
                     if (GUILayout.Button("Go"))
                     {
-                        if (goIndex >= 0 && goIndex < questLoader.logic.items.Length)
+                        if (goIndex >= 0 && goIndex < questLoader.logic.questions.Length)
                         {
                             GUI.FocusControl(null);
                             questLoader.logic.currentItemIndex = goIndex;
@@ -495,7 +495,7 @@ public class QuestEditor : EditorWindow
     }
 
     private void initHeroValues() {
-        var item = questLoader.logic.items[questLoader.logic.currentItemIndex];
+        var item = questLoader.logic.questions[questLoader.logic.currentItemIndex];
         GUILayout.Label("Values", EditorStyles.label);
 
         EditorGUILayout.Space();
@@ -568,7 +568,7 @@ public class QuestEditor : EditorWindow
     }
 
     private void insertHeroValue(int i) {
-        var item = questLoader.logic.items[questLoader.logic.currentItemIndex];
+        var item = questLoader.logic.questions[questLoader.logic.currentItemIndex];
         List<string> heroElementsList = new List<string>(questLoader.logic.heroElements);
         List<int> heroValuesList = new List<int>(questLoader.logic.heroValues);
         List<int> heroValuesItemList = new List<int>(item.heroValues);
@@ -586,7 +586,7 @@ public class QuestEditor : EditorWindow
     }
 
     private void removeHeroValue(int i) {
-        var item = questLoader.logic.items[questLoader.logic.currentItemIndex];
+        var item = questLoader.logic.questions[questLoader.logic.currentItemIndex];
         List<string> heroElementsList = new List<string>(questLoader.logic.heroElements);
         List<int> heroValuesList = new List<int>(questLoader.logic.heroValues);
         List<int> heroValuesItemList = new List<int>(item.heroValues);
@@ -646,11 +646,11 @@ public class QuestEditor : EditorWindow
 
         EditorGUILayout.Space();
 
-        GUILayout.Label(QuestLoader.name + " [" + questLoader.logic.items.Length + " screens]", EditorStyles.label);
+        GUILayout.Label(QuestLoader.name + " [" + questLoader.logic.questions.Length + " screens]", EditorStyles.label);
 
         EditorGUILayout.Space();
 
-        var item = questLoader.logic.items[questLoader.logic.currentItemIndex];
+        var item = questLoader.logic.questions[questLoader.logic.currentItemIndex];
         string buttonTitle = createTitle(item, questLoader.logic.currentItemIndex);
         tabElements = GUILayout.Toolbar (tabElements, new string[] { "All", buttonTitle, "Quests" });
         switch (tabElements) {
@@ -737,7 +737,7 @@ public class QuestEditor : EditorWindow
                 Image mainImage = GameObject.Find("MainImage").GetComponent<Image>();
                 if (mainImage.GetComponent<RectTransform>().hasChanged)
                 {
-                    var item = questLoader.logic.items[questLoader.logic.currentItemIndex];
+                    var item = questLoader.logic.questions[questLoader.logic.currentItemIndex];
                     item.mainImagePosition = mainImage.rectTransform.localPosition;
                     item.mainImageSize = mainImage.rectTransform.sizeDelta;
                 }
@@ -760,7 +760,7 @@ public class QuestEditor : EditorWindow
                 Image mainImage = GameObject.Find("MainImage").GetComponent<Image>();
                 if (mainImage.GetComponent<RectTransform>().hasChanged)
                 {
-                    foreach (var item in questLoader.logic.items)
+                    foreach (var item in questLoader.logic.questions)
                     {
                         item.mainImagePosition = mainImage.rectTransform.localPosition;
                         item.mainImageSize = mainImage.rectTransform.sizeDelta;

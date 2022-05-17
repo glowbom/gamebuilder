@@ -279,7 +279,7 @@ public class Default
 
 // networking
 
-public class GridStatusScript : MonoBehaviour
+public class Quiz : MonoBehaviour
 {
     // correct answer color #37B392
     // incorrect answer color #B24437

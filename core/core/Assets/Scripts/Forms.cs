@@ -11,7 +11,7 @@ using UnityEngine.UI;
  */
 public class Forms
 {
-    public static GridStatusScript ui;
+    public static Quiz ui;
 
 	public static List<string> names;
     public static List<string> entries;

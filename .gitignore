@@ -73,3 +73,5 @@ core/core/Temp/*
 core/core/Logs/shadercompiler-UnityShaderCompiler0.log
 core/core/mono_crash.9adc8497e.0.json
 core/core/UserSettings/Layouts/CurrentMaximizeLayout.dwlt
+*.log
+core/core/Logs/*

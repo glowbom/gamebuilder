@@ -75,3 +75,5 @@ core/core/mono_crash.9adc8497e.0.json
 core/core/UserSettings/Layouts/CurrentMaximizeLayout.dwlt
 *.log
 core/core/Logs/*
+gamebuilder/Logs/shadercompiler-UnityShaderCompiler0.log
+gamebuilder/Logs/shadercompiler-UnityShaderCompiler0.log

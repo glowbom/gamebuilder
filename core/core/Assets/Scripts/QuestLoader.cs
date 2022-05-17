@@ -11,7 +11,7 @@ public class QuestLoader
     public Logic logic = null;
     public Buttons buttonsLogic = null;
     public Default config = null;
-    public static string name = "TemplateQuest";
+    public static string name = "quiz.glowbom";
     public static string language = "";
 
     public void initialize() {

@@ -1009,7 +1009,7 @@ public class Quiz : MonoBehaviour
 
     public void load()
     {
-        if (lastUsedFileName != null)
+        /*if (lastUsedFileName != null)
         {
             String link = lastUsedFileName;
             if (lastClickedLink != null && lastClickedLink != "")
@@ -1028,7 +1028,12 @@ public class Quiz : MonoBehaviour
             textAsset = Resources.Load("Data/" + lastClickedLink) as TextAsset;
         }
 
-        load(textAsset.text);
+        load(textAsset.text);*/
+
+        string path = "Assets/Resources/quiz.glowbom";
+        StreamReader reader = new StreamReader(path);
+        load(reader.ReadToEnd());
+        reader.Close();
     }
 
     private Sprite loadSpriteFromFile(string path)

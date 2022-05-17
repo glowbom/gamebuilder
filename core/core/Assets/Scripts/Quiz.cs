@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 using System;
+using TMPro;
 
 /*
  * Created on Sun Jul 21 2019
@@ -297,7 +298,7 @@ public class Quiz : MonoBehaviour
     public Image quitView;
     public Image scrollView;
     public Text gameViewTitle;
-    public Text gameViewText;
+    public TextMeshProUGUI gameViewText;
     public Text gameViewHeroStatusText;
     public Button[] buttons;
     public InputField[] inputFields;
@@ -480,7 +481,7 @@ public class Quiz : MonoBehaviour
                             }
                         }
 
-                        bs.transform.Find("Text").GetComponent<Text>().text = item.buttonsTexts[i];
+                        bs.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = item.buttonsTexts[i];
 
                         buttons[i].enabled = item.goIndexes[i] != -1;
                         buttons[i].gameObject.SetActive(item.goIndexes[i] != -1);

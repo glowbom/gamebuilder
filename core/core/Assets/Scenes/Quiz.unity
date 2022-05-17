@@ -770,7 +770,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 1262.8596
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1503,6 +1503,111 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1751488990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1751488992}
+  - component: {fileID: 1751488991}
+  m_Layer: 0
+  m_Name: Quiz
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1751488991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751488990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369950091bb58428a8e544c21c692d0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharing: {fileID: 0}
+  clipboard: {fileID: 0}
+  editButtonPanel: {fileID: 0}
+  editTitleButtonField: {fileID: 0}
+  editView: {fileID: 0}
+  editTitleField: {fileID: 0}
+  editTextField: {fileID: 0}
+  quitView: {fileID: 0}
+  scrollView: {fileID: 0}
+  gameViewTitle: {fileID: 0}
+  gameViewText: {fileID: 1754544346}
+  gameViewHeroStatusText: {fileID: 0}
+  buttons:
+  - {fileID: 1070220599}
+  - {fileID: 452026408}
+  - {fileID: 1435404452}
+  - {fileID: 1414225381}
+  inputFields: []
+  gridButtons: []
+  pictures: []
+  backgroundImage: {fileID: 0}
+  logic:
+    heroElements: []
+    heroValues: 
+    currentItemIndex: 0
+    items: []
+    deadValue: 0
+    deadLevel: 0
+    deadItemIndex: 0
+    pleaseRestart: 0
+    answers: 
+    backgroundPicture: 
+    link: 
+    nft: 
+  startButtonText: {fileID: 0}
+  buttonsLogic:
+    buttons: []
+    title: 
+    secondTitle: 
+    aboutText: 
+    playButton: 
+    aboutButton: 
+    mainMenuButton: 
+    frontImage: 
+    gridImage: 
+    backImage: 
+  front: {fileID: 0}
+  gridBackground: {fileID: 0}
+  about: {fileID: 0}
+  gridButtonsPanel: {fileID: 0}
+  status: {fileID: 0}
+  playAudio: {fileID: 0}
+  correctAnswers: 0
+  totalQuestionsCount: 0
+  title: {fileID: 0}
+  secondTitle: {fileID: 0}
+  aboutText: {fileID: 0}
+  playButton: {fileID: 0}
+  aboutButton: {fileID: 0}
+  mainMenuButton: {fileID: 0}
+  editButton: {fileID: 0}
+--- !u!4 &1751488992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751488990}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 522.5311, y: 906.1738, z: -37.272697}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1754544344
 GameObject:
   m_ObjectHideFlags: 0

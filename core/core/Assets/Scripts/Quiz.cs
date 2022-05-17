@@ -453,7 +453,8 @@ public class Quiz : MonoBehaviour
                 for (int i = 0; i < buttons.Length; i++)
                 {
                     buttons[i].gameObject.SetActive(false);
-                    buttons[i].image.color = new Color32(255, 255, 255, 0); // 255 for non-transparent
+                    buttons[i].image.color = new Color32(255, 255, 255, 255); // 255 for non-transparent
+                    //buttons[i].image.sprite = sprites["default"];
                 }
 
                 for (int i = 0; i < item.buttonsTexts.Length; i++)

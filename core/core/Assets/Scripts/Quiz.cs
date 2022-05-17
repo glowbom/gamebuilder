@@ -354,10 +354,18 @@ public class Quiz : MonoBehaviour
                 //    monetization.tryShowAds();
                 //}
 
-                resetDraggablePanelPosition(scrollView.gameObject.transform);
+                if (scrollView != null)
+                {
+                    resetDraggablePanelPosition(scrollView.gameObject.transform);
+                }
+                
 
                 Logic.Item item = logic.items[logic.currentItemIndex];
-                gameViewTitle.text = item.title;
+                if (gameViewTitle != null)
+                {
+                    gameViewTitle.text = item.title;
+                }
+                    
 
                 //trackEvent("Book", item.title);
 
@@ -378,7 +386,11 @@ public class Quiz : MonoBehaviour
                     statusString = statusString.Remove(statusString.Length - 2, 2);
                 }
 
-                gameViewHeroStatusText.text = statusString;
+                if (gameViewHeroStatusText != null)
+                {
+                    gameViewHeroStatusText.text = statusString;
+                }
+
 
 
 
@@ -431,7 +443,11 @@ public class Quiz : MonoBehaviour
                     }
                 }
 
-                gameViewText.text = item.description;
+                if (gameViewText != null)
+                {
+                    gameViewText.text = item.description;
+                }
+                
 
                 for (int i = 0; i < buttons.Length; i++)
                 {
@@ -491,9 +507,12 @@ public class Quiz : MonoBehaviour
 
                 if (item.picturesSpriteNames != null)
                 {
-
-                    pictures[0].gameObject.SetActive(false);
-
+                    
+                    if (pictures != null && pictures.Length > 0 && pictures[0] != null)
+                    {
+                        pictures[0].gameObject.SetActive(false);
+                    }
+                   
                     if (item.picturesSpriteNames.Length != 0)
                     {
                         for (int i = 0; i < item.picturesSpriteNames.Length; i++)
@@ -1040,7 +1059,11 @@ public class Quiz : MonoBehaviour
 
     private void load(String data)
     {
-        editButton.gameObject.SetActive(true);
+        if (editButton != null)
+        {
+            editButton.gameObject.SetActive(true);
+        }
+        
 
         logic = JsonUtility.FromJson<Logic>(data);
         logic.answers = "";

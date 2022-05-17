@@ -435,12 +435,15 @@ public class Quiz : MonoBehaviour
                     }
                 }
 
-                for (int heroValueIndex = 0; heroValueIndex < logic.heroElements.Length; heroValueIndex++)
+                if (logic.heroElements != null)
                 {
-                    string element = logic.heroElements[heroValueIndex];
-                    if (item.description.Contains("{" + element))
+                    for (int heroValueIndex = 0; heroValueIndex < logic.heroElements.Length; heroValueIndex++)
                     {
-                        item.description = item.description.Replace("{" + element + "}", logic.heroValues[heroValueIndex].ToString());
+                        string element = logic.heroElements[heroValueIndex];
+                        if (item.description.Contains("{" + element))
+                        {
+                            item.description = item.description.Replace("{" + element + "}", logic.heroValues[heroValueIndex].ToString());
+                        }
                     }
                 }
 
@@ -473,12 +476,15 @@ public class Quiz : MonoBehaviour
                             }
                         }
 
-                        for (int heroValueIndex = 0; heroValueIndex < logic.heroElements.Length; heroValueIndex++)
+                        if (logic.heroElements != null)
                         {
-                            string element = logic.heroElements[heroValueIndex];
-                            if (item.buttonsTexts[i].Contains("{" + element))
+                            for (int heroValueIndex = 0; heroValueIndex < logic.heroElements.Length; heroValueIndex++)
                             {
-                                item.buttonsTexts[i] = item.buttonsTexts[i].Replace("{" + element + "}", logic.heroValues[heroValueIndex].ToString());
+                                string element = logic.heroElements[heroValueIndex];
+                                if (item.buttonsTexts[i].Contains("{" + element))
+                                {
+                                    item.buttonsTexts[i] = item.buttonsTexts[i].Replace("{" + element + "}", logic.heroValues[heroValueIndex].ToString());
+                                }
                             }
                         }
 

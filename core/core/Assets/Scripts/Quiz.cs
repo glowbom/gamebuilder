@@ -69,7 +69,7 @@ public class Logic
 
     public bool isSupportAnswers()
     {
-        return questions[currentItemIndex].answersCount > 0;
+        return true;// questions[currentItemIndex].answersCount > 0;
     }
 
     public bool hasMultipleAnswers()
@@ -819,7 +819,7 @@ public class Quiz : MonoBehaviour
 
         if (logic.shouldShowResultScreen(i))
         {
-            String text = resultText.text;
+            String text = "You got [correctAnswers] out of [totalQuestionsCount] correct.";
             if (text.Contains("[correctAnswers]"))
             {
                 text = text.Replace("[correctAnswers]", correctAnswers.ToString());

@@ -154,6 +154,18 @@ public class Logic
         return false;
     }
 
+    public bool shouldShowResultScreen(int i)
+    {
+        Item item = questions[currentItemIndex];
+
+        if (item.goIndexes != null && i > -1 && i < item.goIndexes.Length)
+        {
+            return item.goIndexes[i] == 10004;
+        }
+
+        return false;
+    }
+
     public string getTextToShare()
     {
         return questions[currentItemIndex].description;
@@ -322,6 +334,9 @@ public class Quiz : MonoBehaviour
 
     public Text status;
 
+    public GameObject resultPanel;
+    public TextMeshProUGUI resultText;
+
     Dictionary<string, string> answers = new Dictionary<string, string>();
 
     public static void trackEvent(string category, string action)
@@ -340,6 +355,11 @@ public class Quiz : MonoBehaviour
     public int totalQuestionsCount = 0;
 
     //Moralis.MoralisClient moralis = null;
+
+    public void resultButtonPressed()
+    {
+        resultPanel.gameObject.SetActive(false);
+    }
 
     public void procced()
     {
@@ -797,6 +817,39 @@ public class Quiz : MonoBehaviour
             return;
         }
 
+        if (logic.shouldShowResultScreen(i))
+        {
+            String text = resultText.text;
+            if (text.Contains("[correctAnswers]"))
+            {
+                text = text.Replace("[correctAnswers]", correctAnswers.ToString());
+
+                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0
+                    && correctAnswers > buttonsLogic.buttons[lastClickedGridButtonIndex].score)
+                {
+                    buttonsLogic.buttons[lastClickedGridButtonIndex].score = correctAnswers;
+                }
+            }
+
+            if (text.Contains("[totalQuestionsCount]"))
+            {
+                totalQuestionsCount = logic.getTotalQuestionsCount();
+                text = text.Replace("[totalQuestionsCount]", totalQuestionsCount.ToString());
+
+                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0)
+                {
+                    buttonsLogic.buttons[lastClickedGridButtonIndex].totalQuestionsCount = totalQuestionsCount;
+                    saveButtonsLogic();
+                }
+            }
+
+            resultText.text = text;
+
+            resultPanel.gameObject.SetActive(true);
+            backPressed();
+            return;
+        }
+
         if (logic.isSupportAnswers())
         {
 
@@ -1081,6 +1134,20 @@ public class Quiz : MonoBehaviour
         logic = JsonUtility.FromJson<Logic>(data);
         logic.answers = "";
         correctAnswers = 0;
+
+        if (logic.questions != null && logic.questions.Length > 0)
+        {
+            Logic.Item lastItem = logic.questions[logic.questions.Length - 1];
+            if (lastItem.goIndexes != null && lastItem.goIndexes.Length > 0)
+            {
+                for(int i = 0; i < lastItem.goIndexes.Length; i++)
+                {
+                    lastItem.goIndexes[i] = 10004;
+                }
+            }
+
+        }
+        
 
         loadResources();
     }

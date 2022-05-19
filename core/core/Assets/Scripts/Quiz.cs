@@ -47,6 +47,10 @@ public class Logic
     public string backgroundPicture;
     public string link;
     public string nft;
+    public string mainColor;
+    public string conclusion;
+    public string title;
+    public string startOver;
 
     public int getAnswersCount()
     {

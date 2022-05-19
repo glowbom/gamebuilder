@@ -340,6 +340,8 @@ public class Quiz : MonoBehaviour
 
     public GameObject resultPanel;
     public TextMeshProUGUI resultText;
+    public TextMeshProUGUI resultStartOverText;
+
 
     Dictionary<string, string> answers = new Dictionary<string, string>();
 
@@ -847,7 +849,10 @@ public class Quiz : MonoBehaviour
                 }
             }
 
+            text += "\n\n" + logic.conclusion;
+
             resultText.text = text;
+            resultStartOverText.text = logic.start_over;
 
             resultPanel.gameObject.SetActive(true);
             backPressed();

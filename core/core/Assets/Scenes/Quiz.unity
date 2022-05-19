@@ -2097,6 +2097,10 @@ MonoBehaviour:
     backgroundPicture: 
     link: 
     nft: 
+    main_color: 
+    conclusion: 
+    title: 
+    start_over: 
   startButtonText: {fileID: 0}
   buttonsLogic:
     buttons: []
@@ -2116,6 +2120,7 @@ MonoBehaviour:
   status: {fileID: 0}
   resultPanel: {fileID: 1060716148}
   resultText: {fileID: 1457485589}
+  resultStartOverText: {fileID: 777368121}
   playAudio: {fileID: 0}
   correctAnswers: 0
   totalQuestionsCount: 0

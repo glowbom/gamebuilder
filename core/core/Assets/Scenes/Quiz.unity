@@ -2260,6 +2260,7 @@ MonoBehaviour:
   resultYourScoreText: {fileID: 1991240217}
   resultStartOverText: {fileID: 777368121}
   titleText: {fileID: 1448783569}
+  navBar: {fileID: 869635690}
   playAudio: {fileID: 0}
   correctAnswers: 0
   totalQuestionsCount: 0

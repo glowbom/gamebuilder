@@ -343,6 +343,7 @@ public class Quiz : MonoBehaviour
     public TextMeshProUGUI resultYourScoreText;
     public TextMeshProUGUI resultStartOverText;
     public TextMeshProUGUI titleText;
+    public Image navBar;
 
 
     Dictionary<string, string> answers = new Dictionary<string, string>();
@@ -603,6 +604,20 @@ public class Quiz : MonoBehaviour
         sprites.Clear();
         Sprite sprite = Resources.Load("Textures/default", typeof(Sprite)) as Sprite;
         sprites.Add("default", sprite);
+        sprite = Resources.Load("Textures/navbar_black", typeof(Sprite)) as Sprite;
+        sprites.Add("Black", sprite);
+        sprite = Resources.Load("Textures/navbar_blue", typeof(Sprite)) as Sprite;
+        sprites.Add("Blue", sprite);
+        sprite = Resources.Load("Textures/navbar_green", typeof(Sprite)) as Sprite;
+        sprites.Add("Green", sprite);
+        sprite = Resources.Load("Textures/navbar_grey", typeof(Sprite)) as Sprite;
+        sprites.Add("Grey", sprite);
+        sprite = Resources.Load("Textures/navbar_purple", typeof(Sprite)) as Sprite;
+        sprites.Add("Purple", sprite);
+        sprite = Resources.Load("Textures/navbar_red", typeof(Sprite)) as Sprite;
+        sprites.Add("Red", sprite);
+        sprite = Resources.Load("Textures/navbar_white", typeof(Sprite)) as Sprite;
+        sprites.Add("White", sprite);
 
         GameStatusMagic.instance.load();
 
@@ -1105,6 +1120,11 @@ public class Quiz : MonoBehaviour
         reader.Close();
 
         titleText.text = logic.title;
+        if (logic.main_color != null && logic.main_color != "" && sprites.ContainsKey(logic.main_color))
+        {
+            navBar.sprite = sprites[logic.main_color];
+        }
+        
     }
 
     private Sprite loadSpriteFromFile(string path)

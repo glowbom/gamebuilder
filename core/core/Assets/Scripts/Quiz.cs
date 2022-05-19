@@ -340,6 +340,7 @@ public class Quiz : MonoBehaviour
 
     public GameObject resultPanel;
     public TextMeshProUGUI resultText;
+    public TextMeshProUGUI resultYourScoreText;
     public TextMeshProUGUI resultStartOverText;
 
 
@@ -823,41 +824,7 @@ public class Quiz : MonoBehaviour
             return;
         }
 
-        if (logic.shouldShowResultScreen(i))
-        {
-            String text = "You got [correctAnswers] out of [totalQuestionsCount] correct.";
-            if (text.Contains("[correctAnswers]"))
-            {
-                text = text.Replace("[correctAnswers]", correctAnswers.ToString());
-
-                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0
-                    && correctAnswers > buttonsLogic.buttons[lastClickedGridButtonIndex].score)
-                {
-                    buttonsLogic.buttons[lastClickedGridButtonIndex].score = correctAnswers;
-                }
-            }
-
-            if (text.Contains("[totalQuestionsCount]"))
-            {
-                totalQuestionsCount = logic.getTotalQuestionsCount();
-                text = text.Replace("[totalQuestionsCount]", totalQuestionsCount.ToString());
-
-                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0)
-                {
-                    buttonsLogic.buttons[lastClickedGridButtonIndex].totalQuestionsCount = totalQuestionsCount;
-                    saveButtonsLogic();
-                }
-            }
-
-            text += "\n\n" + logic.conclusion;
-
-            resultText.text = text;
-            resultStartOverText.text = logic.start_over;
-
-            resultPanel.gameObject.SetActive(true);
-            backPressed();
-            return;
-        }
+        
 
         if (logic.isSupportAnswers())
         {
@@ -913,6 +880,45 @@ public class Quiz : MonoBehaviour
 
 
             await Task.Delay(TimeSpan.FromSeconds(1));
+        }
+
+        if (logic.shouldShowResultScreen(i))
+        {
+            String text = "You got [correctAnswers] out of [totalQuestionsCount] correct.";
+            if (text.Contains("[correctAnswers]"))
+            {
+                text = text.Replace("[correctAnswers]", correctAnswers.ToString());
+
+                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0
+                    && correctAnswers > buttonsLogic.buttons[lastClickedGridButtonIndex].score)
+                {
+                    buttonsLogic.buttons[lastClickedGridButtonIndex].score = correctAnswers;
+                }
+            }
+
+            if (text.Contains("[totalQuestionsCount]"))
+            {
+                totalQuestionsCount = logic.getTotalQuestionsCount();
+                text = text.Replace("[totalQuestionsCount]", totalQuestionsCount.ToString());
+
+                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0)
+                {
+                    buttonsLogic.buttons[lastClickedGridButtonIndex].totalQuestionsCount = totalQuestionsCount;
+                    saveButtonsLogic();
+                }
+            }
+
+            text += "\n\n" + logic.conclusion;
+
+            resultText.text = text;
+            resultStartOverText.text = logic.start_over;
+
+            int percent = (correctAnswers * 100 / totalQuestionsCount);
+            resultYourScoreText.text = "YOUR SCORE: " + percent + "%";
+
+            resultPanel.gameObject.SetActive(true);
+            backPressed();
+            return;
         }
 
 

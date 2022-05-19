@@ -342,6 +342,7 @@ public class Quiz : MonoBehaviour
     public TextMeshProUGUI resultText;
     public TextMeshProUGUI resultYourScoreText;
     public TextMeshProUGUI resultStartOverText;
+    public TextMeshProUGUI titleText;
 
 
     Dictionary<string, string> answers = new Dictionary<string, string>();
@@ -1102,6 +1103,8 @@ public class Quiz : MonoBehaviour
         StreamReader reader = new StreamReader(path);
         load(reader.ReadToEnd());
         reader.Close();
+
+        titleText.text = logic.title;
     }
 
     private Sprite loadSpriteFromFile(string path)

@@ -599,10 +599,6 @@ public class Quiz : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Debug.Log(Application.streamingAssetsPath + "/quiz.glowbom");
-        load();
-
-
         //if (monetization != null)
         //{
         //    monetization.initAds();
@@ -685,7 +681,10 @@ public class Quiz : MonoBehaviour
         procced();
 
         refreshGridButtons();
-        front.gameObject.SetActive(true);
+        if (front != null)
+        {
+            front.gameObject.SetActive(true);
+        }
     }
 
     public void aboutPressed()
@@ -781,6 +780,54 @@ public class Quiz : MonoBehaviour
     {
         gridButtonsPanel.gameObject.SetActive(true);
         gridBackground.gameObject.SetActive(true);
+    }
+
+    IEnumerator WaitForSecAndGo(int i)
+    {
+        yield return new WaitForSeconds(1);
+        if (logic.shouldShowResultScreen(i))
+        {
+            String text = "You got [correctAnswers] out of [totalQuestionsCount] correct.";
+            if (text.Contains("[correctAnswers]"))
+            {
+                text = text.Replace("[correctAnswers]", correctAnswers.ToString());
+
+                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0
+                    && correctAnswers > buttonsLogic.buttons[lastClickedGridButtonIndex].score)
+                {
+                    buttonsLogic.buttons[lastClickedGridButtonIndex].score = correctAnswers;
+                }
+            }
+
+            if (text.Contains("[totalQuestionsCount]"))
+            {
+                totalQuestionsCount = logic.getTotalQuestionsCount();
+                text = text.Replace("[totalQuestionsCount]", totalQuestionsCount.ToString());
+
+                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0)
+                {
+                    buttonsLogic.buttons[lastClickedGridButtonIndex].totalQuestionsCount = totalQuestionsCount;
+                    saveButtonsLogic();
+                }
+            }
+
+            text += "\n\n" + logic.conclusion;
+
+            resultText.text = text;
+            resultStartOverText.text = logic.start_over;
+
+            int percent = (correctAnswers * 100 / totalQuestionsCount);
+            resultYourScoreText.text = "YOUR SCORE: " + percent + "%";
+
+            resultPanel.gameObject.SetActive(true);
+            backPressed();
+        } else
+        {
+            logic.nextItem(i);
+            procced();
+        }
+
+        
     }
 
     public async void buttonPressed(int i)
@@ -902,53 +949,18 @@ public class Quiz : MonoBehaviour
 
 
 
-            await Task.Delay(TimeSpan.FromSeconds(1));
+            //await Task.Delay(TimeSpan.FromSeconds(1));
+            StartCoroutine(WaitForSecAndGo(i));
+            //return;
         }
 
-        if (logic.shouldShowResultScreen(i))
-        {
-            String text = "You got [correctAnswers] out of [totalQuestionsCount] correct.";
-            if (text.Contains("[correctAnswers]"))
-            {
-                text = text.Replace("[correctAnswers]", correctAnswers.ToString());
-
-                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0
-                    && correctAnswers > buttonsLogic.buttons[lastClickedGridButtonIndex].score)
-                {
-                    buttonsLogic.buttons[lastClickedGridButtonIndex].score = correctAnswers;
-                }
-            }
-
-            if (text.Contains("[totalQuestionsCount]"))
-            {
-                totalQuestionsCount = logic.getTotalQuestionsCount();
-                text = text.Replace("[totalQuestionsCount]", totalQuestionsCount.ToString());
-
-                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0)
-                {
-                    buttonsLogic.buttons[lastClickedGridButtonIndex].totalQuestionsCount = totalQuestionsCount;
-                    saveButtonsLogic();
-                }
-            }
-
-            text += "\n\n" + logic.conclusion;
-
-            resultText.text = text;
-            resultStartOverText.text = logic.start_over;
-
-            int percent = (correctAnswers * 100 / totalQuestionsCount);
-            resultYourScoreText.text = "YOUR SCORE: " + percent + "%";
-
-            resultPanel.gameObject.SetActive(true);
-            backPressed();
-            return;
-        }
+        
 
 
 
 
-        logic.nextItem(i);
-        procced();
+        //logic.nextItem(i);
+        //procced();
     }
 
     private bool isShowCorrectAnswer = true;
@@ -1098,18 +1110,13 @@ public class Quiz : MonoBehaviour
         loadFromFile(filename, true);
     }
 
-    IEnumerator loadFile()
+    IEnumerator loadFileFromWeb()
     {
         UnityEngine.Networking.UnityWebRequest www = UnityEngine.Networking.UnityWebRequest.Get(Application.streamingAssetsPath + "/quiz.glowbom");
         yield return www.SendWebRequest();
 
         String data = www.downloadHandler.text;
-        ExecuteOnMainThread.RunOnMainThread.Enqueue(() => {
-
-            load(data);
-            
-
-        });
+        load(data);
 
         titleText.text = logic.title;
         if (logic.main_color != null && logic.main_color != "" && sprites.ContainsKey(logic.main_color))
@@ -1117,7 +1124,9 @@ public class Quiz : MonoBehaviour
             navBar.sprite = sprites[logic.main_color];
         }
 
+        procced();
 
+        refreshGridButtons();
     }
 
     public void load()
@@ -1151,10 +1160,6 @@ public class Quiz : MonoBehaviour
 
         //load(File.ReadAllText(Application.streamingAssetsPath + "/quiz.glowbom"));
 
-#if UNITY_WEBGL
-        StartCoroutine(loadFile());
-#endif
-
 #if UNITY_EDITOR
         load(File.ReadAllText(Application.streamingAssetsPath + "/quiz.glowbom"));
         titleText.text = logic.title;
@@ -1162,7 +1167,18 @@ public class Quiz : MonoBehaviour
         {
             navBar.sprite = sprites[logic.main_color];
         }
+#elif UNITY_WEBGL
+        StartCoroutine(loadFileFromWeb());
+#else
+        load(File.ReadAllText(Application.streamingAssetsPath + "/quiz.glowbom"));
+        titleText.text = logic.title;
+        if (logic.main_color != null && logic.main_color != "" && sprites.ContainsKey(logic.main_color))
+        {
+            navBar.sprite = sprites[logic.main_color];
+        }
 #endif
+
+
 
 
 

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using System.Threading.Tasks;
 using System;
 using TMPro;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 
 /*
  * Created on Sun Jul 21 2019
@@ -388,14 +391,14 @@ public class Quiz : MonoBehaviour
                 {
                     resetDraggablePanelPosition(scrollView.gameObject.transform);
                 }
-                
+
 
                 Logic.Item item = logic.questions[logic.currentItemIndex];
                 if (gameViewTitle != null)
                 {
                     gameViewTitle.text = item.title;
                 }
-                    
+
 
                 //trackEvent("Book", item.title);
 
@@ -480,7 +483,7 @@ public class Quiz : MonoBehaviour
                 {
                     gameViewText.text = item.description;
                 }
-                
+
 
                 for (int i = 0; i < buttons.Length; i++)
                 {
@@ -544,12 +547,12 @@ public class Quiz : MonoBehaviour
 
                 if (item.picturesSpriteNames != null)
                 {
-                    
+
                     if (pictures != null && pictures.Length > 0 && pictures[0] != null)
                     {
                         pictures[0].gameObject.SetActive(false);
                     }
-                   
+
                     if (item.picturesSpriteNames.Length != 0)
                     {
                         for (int i = 0; i < item.picturesSpriteNames.Length; i++)
@@ -678,7 +681,10 @@ public class Quiz : MonoBehaviour
         procced();
 
         refreshGridButtons();
-        front.gameObject.SetActive(true);
+        if (front != null)
+        {
+            front.gameObject.SetActive(true);
+        }
     }
 
     public void aboutPressed()
@@ -776,6 +782,55 @@ public class Quiz : MonoBehaviour
         gridBackground.gameObject.SetActive(true);
     }
 
+    IEnumerator WaitForSecAndGo(int i)
+    {
+        yield return new WaitForSeconds(1);
+        if (logic.shouldShowResultScreen(i))
+        {
+            String text = "You got [correctAnswers] out of [totalQuestionsCount] correct.";
+            if (text.Contains("[correctAnswers]"))
+            {
+                text = text.Replace("[correctAnswers]", correctAnswers.ToString());
+
+                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0
+                    && correctAnswers > buttonsLogic.buttons[lastClickedGridButtonIndex].score)
+                {
+                    buttonsLogic.buttons[lastClickedGridButtonIndex].score = correctAnswers;
+                }
+            }
+
+            if (text.Contains("[totalQuestionsCount]"))
+            {
+                totalQuestionsCount = logic.getTotalQuestionsCount();
+                text = text.Replace("[totalQuestionsCount]", totalQuestionsCount.ToString());
+
+                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0)
+                {
+                    buttonsLogic.buttons[lastClickedGridButtonIndex].totalQuestionsCount = totalQuestionsCount;
+                    saveButtonsLogic();
+                }
+            }
+
+            text += "\n\n" + logic.conclusion;
+
+            resultText.text = text;
+            resultStartOverText.text = logic.start_over;
+
+            int percent = (correctAnswers * 100 / totalQuestionsCount);
+            resultYourScoreText.text = "YOUR SCORE: " + percent + "%";
+
+            resultPanel.gameObject.SetActive(true);
+            backPressed();
+        }
+        else
+        {
+            logic.nextItem(i);
+            procced();
+        }
+
+
+    }
+
     public async void buttonPressed(int i)
     {
         ++buttonPressedCounter;
@@ -840,7 +895,7 @@ public class Quiz : MonoBehaviour
             return;
         }
 
-        
+
 
         if (logic.isSupportAnswers())
         {
@@ -895,53 +950,18 @@ public class Quiz : MonoBehaviour
 
 
 
-            await Task.Delay(TimeSpan.FromSeconds(1));
-        }
-
-        if (logic.shouldShowResultScreen(i))
-        {
-            String text = "You got [correctAnswers] out of [totalQuestionsCount] correct.";
-            if (text.Contains("[correctAnswers]"))
-            {
-                text = text.Replace("[correctAnswers]", correctAnswers.ToString());
-
-                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0
-                    && correctAnswers > buttonsLogic.buttons[lastClickedGridButtonIndex].score)
-                {
-                    buttonsLogic.buttons[lastClickedGridButtonIndex].score = correctAnswers;
-                }
-            }
-
-            if (text.Contains("[totalQuestionsCount]"))
-            {
-                totalQuestionsCount = logic.getTotalQuestionsCount();
-                text = text.Replace("[totalQuestionsCount]", totalQuestionsCount.ToString());
-
-                if (gridButtonsPanel != null && lastClickedGridButtonIndex >= 0)
-                {
-                    buttonsLogic.buttons[lastClickedGridButtonIndex].totalQuestionsCount = totalQuestionsCount;
-                    saveButtonsLogic();
-                }
-            }
-
-            text += "\n\n" + logic.conclusion;
-
-            resultText.text = text;
-            resultStartOverText.text = logic.start_over;
-
-            int percent = (correctAnswers * 100 / totalQuestionsCount);
-            resultYourScoreText.text = "YOUR SCORE: " + percent + "%";
-
-            resultPanel.gameObject.SetActive(true);
-            backPressed();
-            return;
+            //await Task.Delay(TimeSpan.FromSeconds(1));
+            StartCoroutine(WaitForSecAndGo(i));
+            //return;
         }
 
 
 
 
-        logic.nextItem(i);
-        procced();
+
+
+        //logic.nextItem(i);
+        //procced();
     }
 
     private bool isShowCorrectAnswer = true;
@@ -1091,6 +1111,25 @@ public class Quiz : MonoBehaviour
         loadFromFile(filename, true);
     }
 
+    IEnumerator loadFileFromWeb()
+    {
+        UnityEngine.Networking.UnityWebRequest www = UnityEngine.Networking.UnityWebRequest.Get(Application.streamingAssetsPath + "/quiz.glowbom");
+        yield return www.SendWebRequest();
+
+        String data = www.downloadHandler.text;
+        load(data);
+
+        titleText.text = logic.title;
+        if (logic.main_color != null && logic.main_color != "" && sprites.ContainsKey(logic.main_color))
+        {
+            navBar.sprite = sprites[logic.main_color];
+        }
+
+        procced();
+
+        refreshGridButtons();
+    }
+
     public void load()
     {
         /*if (lastUsedFileName != null)
@@ -1114,17 +1153,37 @@ public class Quiz : MonoBehaviour
 
         load(textAsset.text);*/
 
-        string path = "Assets/Resources/quiz.glowbom";
-        StreamReader reader = new StreamReader(path);
-        load(reader.ReadToEnd());
-        reader.Close();
+        //string path = "Assets/Resources/quiz.glowbom";
+        //StreamReader reader = new StreamReader(path);
+        //load(reader.ReadToEnd());
+        //reader.Close();
 
+
+        //load(File.ReadAllText(Application.streamingAssetsPath + "/quiz.glowbom"));
+
+#if UNITY_EDITOR
+        load(File.ReadAllText(Application.streamingAssetsPath + "/quiz.glowbom"));
         titleText.text = logic.title;
         if (logic.main_color != null && logic.main_color != "" && sprites.ContainsKey(logic.main_color))
         {
             navBar.sprite = sprites[logic.main_color];
         }
-        
+#elif UNITY_WEBGL
+        StartCoroutine(loadFileFromWeb());
+#else
+        load(File.ReadAllText(Application.streamingAssetsPath + "/quiz.glowbom"));
+        titleText.text = logic.title;
+        if (logic.main_color != null && logic.main_color != "" && sprites.ContainsKey(logic.main_color))
+        {
+            navBar.sprite = sprites[logic.main_color];
+        }
+#endif
+
+
+
+
+
+
     }
 
     private Sprite loadSpriteFromFile(string path)
@@ -1167,7 +1226,7 @@ public class Quiz : MonoBehaviour
         {
             editButton.gameObject.SetActive(true);
         }
-        
+
 
         logic = JsonUtility.FromJson<Logic>(data);
         logic.answers = "";
@@ -1178,14 +1237,14 @@ public class Quiz : MonoBehaviour
             Logic.Item lastItem = logic.questions[logic.questions.Length - 1];
             if (lastItem.goIndexes != null && lastItem.goIndexes.Length > 0)
             {
-                for(int i = 0; i < lastItem.goIndexes.Length; i++)
+                for (int i = 0; i < lastItem.goIndexes.Length; i++)
                 {
                     lastItem.goIndexes[i] = 10004;
                 }
             }
 
         }
-        
+
 
         loadResources();
     }
@@ -1501,12 +1560,12 @@ public class Quiz : MonoBehaviour
     }
 
     public Button editButton;
-//    public QuestCreator creator;
+    //    public QuestCreator creator;
 
     public void showEditPanel()
     {
         homePressed();
-//        creator.initMainQuest();
+        //        creator.initMainQuest();
         editView.SetActive(true);
         if (clipboard != null)
         {

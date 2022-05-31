@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using System.Threading.Tasks;
 using System;
 using TMPro;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 
 /*
  * Created on Sun Jul 21 2019
@@ -596,6 +599,10 @@ public class Quiz : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Debug.Log(Application.streamingAssetsPath + "/quiz.glowbom");
+        load();
+
+
         //if (monetization != null)
         //{
         //    monetization.initAds();
@@ -1091,6 +1098,28 @@ public class Quiz : MonoBehaviour
         loadFromFile(filename, true);
     }
 
+    IEnumerator loadFile()
+    {
+        UnityEngine.Networking.UnityWebRequest www = UnityEngine.Networking.UnityWebRequest.Get(Application.streamingAssetsPath + "/quiz.glowbom");
+        yield return www.SendWebRequest();
+
+        String data = www.downloadHandler.text;
+        ExecuteOnMainThread.RunOnMainThread.Enqueue(() => {
+
+            load(data);
+            
+
+        });
+
+        titleText.text = logic.title;
+        if (logic.main_color != null && logic.main_color != "" && sprites.ContainsKey(logic.main_color))
+        {
+            navBar.sprite = sprites[logic.main_color];
+        }
+
+
+    }
+
     public void load()
     {
         /*if (lastUsedFileName != null)
@@ -1114,17 +1143,30 @@ public class Quiz : MonoBehaviour
 
         load(textAsset.text);*/
 
-        string path = "Assets/Resources/quiz.glowbom";
-        StreamReader reader = new StreamReader(path);
-        load(reader.ReadToEnd());
-        reader.Close();
+        //string path = "Assets/Resources/quiz.glowbom";
+        //StreamReader reader = new StreamReader(path);
+        //load(reader.ReadToEnd());
+        //reader.Close();
 
+
+        //load(File.ReadAllText(Application.streamingAssetsPath + "/quiz.glowbom"));
+
+#if UNITY_WEBGL
+        StartCoroutine(loadFile());
+#endif
+
+#if UNITY_EDITOR
+        load(File.ReadAllText(Application.streamingAssetsPath + "/quiz.glowbom"));
         titleText.text = logic.title;
         if (logic.main_color != null && logic.main_color != "" && sprites.ContainsKey(logic.main_color))
         {
             navBar.sprite = sprites[logic.main_color];
         }
-        
+#endif
+
+
+
+
     }
 
     private Sprite loadSpriteFromFile(string path)

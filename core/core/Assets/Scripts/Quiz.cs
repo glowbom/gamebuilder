@@ -139,23 +139,30 @@ public class Logic
     public bool isAskFriendButton(int i)
     {
 
-        Item item = questions[currentItemIndex];
-
-        if (item.goIndexes != null && i > -1 && i < item.goIndexes.Length)
+        if (currentItemIndex < questions.Length)
         {
-            return item.goIndexes[i] == 10002;
+            Item item = questions[currentItemIndex];
+
+            if (item.goIndexes != null && i > -1 && i < item.goIndexes.Length)
+            {
+                return item.goIndexes[i] == 10002;
+            }
         }
+        
 
         return false;
     }
 
     public bool isGoBackButton(int i)
     {
-        Item item = questions[currentItemIndex];
-
-        if (item.goIndexes != null && i > -1 && i < item.goIndexes.Length)
+        if (currentItemIndex < questions.Length)
         {
-            return item.goIndexes[i] == 10003;
+            Item item = questions[currentItemIndex];
+
+            if (item.goIndexes != null && i > -1 && i < item.goIndexes.Length)
+            {
+                return item.goIndexes[i] == 10003;
+            }
         }
 
         return false;
@@ -163,11 +170,14 @@ public class Logic
 
     public bool shouldShowResultScreen(int i)
     {
-        Item item = questions[currentItemIndex];
-
-        if (item.goIndexes != null && i > -1 && i < item.goIndexes.Length)
+        if (currentItemIndex < questions.Length)
         {
-            return item.goIndexes[i] == 10004;
+            Item item = questions[currentItemIndex];
+
+            if (item.goIndexes != null && i > -1 && i < item.goIndexes.Length)
+            {
+                return item.goIndexes[i] == 10004;
+            }
         }
 
         return false;
@@ -215,13 +225,17 @@ public class Logic
         return false;
     }
 
+    private int defaultSeek = 0;
+
     public Item nextItem(int i)
     {
         Item item = questions[currentItemIndex];
 
         if (i > -1 && i < item.goIndexes.Length)
         {
-            currentItemIndex = item.goIndexes[i];
+            defaultSeek = currentItemIndex == 0 && item.goIndexes[i] == 0 ? 1 : 0;
+
+            currentItemIndex = item.goIndexes[i] + defaultSeek;
 
             if (answers == "")
             {
@@ -814,7 +828,7 @@ public class Quiz : MonoBehaviour
             text += "\n\n" + logic.conclusion;
 
             resultText.text = text;
-            resultStartOverText.text = logic.start_over;
+            resultStartOverText.text = logic.start_over == null ? "Start Over" : logic.start_over;
 
             int percent = (correctAnswers * 100 / totalQuestionsCount);
             resultYourScoreText.text = "YOUR SCORE: " + percent + "%";

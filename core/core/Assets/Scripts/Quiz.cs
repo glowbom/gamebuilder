@@ -215,13 +215,17 @@ public class Logic
         return false;
     }
 
+    private int defaultSeek = 0;
+
     public Item nextItem(int i)
     {
         Item item = questions[currentItemIndex];
 
         if (i > -1 && i < item.goIndexes.Length)
         {
-            currentItemIndex = item.goIndexes[i];
+            defaultSeek = currentItemIndex == 0 && item.goIndexes[i] == 0 ? 1 : 0;
+
+            currentItemIndex = item.goIndexes[i] + defaultSeek;
 
             if (answers == "")
             {
@@ -814,7 +818,7 @@ public class Quiz : MonoBehaviour
             text += "\n\n" + logic.conclusion;
 
             resultText.text = text;
-            resultStartOverText.text = logic.start_over;
+            resultStartOverText.text = logic.start_over == null ? "Start Over" : logic.start_over;
 
             int percent = (correctAnswers * 100 / totalQuestionsCount);
             resultYourScoreText.text = "YOUR SCORE: " + percent + "%";
